@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل العميل - شُهب</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .debtor-details-page {
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .details-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .details-header {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-avatar {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #66e0ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .client-details h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .client-meta {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .action-button.primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+        }
+
+        .action-button.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .action-button.warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .details-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 212, 255, 0.2) 100%);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .info-value.amount {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .info-value.success {
+            color: #10b981;
+        }
+
+        .info-value.warning {
+            color: #f59e0b;
+        }
+
+        .info-value.danger {
+            color: #ef4444;
+        }
+
+        .probability-bar {
+            width: 100%;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .probability-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .call-history-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .call-record {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .call-record:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhanced-call-record {
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .enhanced-call-record:hover {
+            border-color: #0ea5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+        }
+
+        .enhanced-call-record.expanded .call-details {
+            display: block;
+        }
+
+        .enhanced-call-record .call-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .expand-indicator {
+            font-size: 0.8rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+        }
+
+        .conversation-text {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-right: 4px solid #0ea5e9;
+        }
+
+        .voice-analysis {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .voice-characteristics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .voice-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border-right: 3px solid #0ea5e9;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .metric-value.عالي,
+        .metric-value.سريع {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .metric-value.متوسط {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .metric-value.منخفض,
+        .metric-value.بطيء,
+        .metric-value.هادئ {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .metric-value.متوتر {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .metric-value.نشط {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+
+        .sentiment-section,
+        .recommendations-section,
+        .full-analysis-section {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .sentiment-section {
+            background: #f0f9ff;
+            border-right: 4px solid #0ea5e9;
+        }
+
+        .recommendations-section {
+            background: #ecfdf5;
+            border-right: 4px solid #10b981;
+        }
+
+        .full-analysis-section {
+            background: #fef7ff;
+            border-right: 4px solid #a855f7;
+        }
+
+        .sentiment-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .audio-section {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .error-section {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .call-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .call-date {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .call-duration {
+            background: #00d4ff;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .call-transcript {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .call-analysis {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-radius: 0.5rem;
+            border-right: 4px solid #10b981;
+        }
+
+        .analysis-title {
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .analysis-text {
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .calling-interface {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phone-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .phone-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .call-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .call-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .call-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* AI Mode Toggle */
+        .ai-mode-toggle {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .toggle-switch {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-switch input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-slider {
+            width: 50px;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            right: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch input[type="checkbox"]:checked+.toggle-slider {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .toggle-switch input[type="checkbox"]:checked+.toggle-slider::before {
+            transform: translateX(-26px);
+        }
+
+        .toggle-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-switch input[type="checkbox"]:checked+.toggle-slider+.toggle-label {
+            color: #1d4ed8;
+        }
+
+        .toggle-switch:hover .toggle-label {
+            color: #1f2937;
+        }
+
+        .call-status {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .call-status.active {
+            display: block;
+        }
+
+        .call-status.connecting {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fbbf24;
+        }
+
+        .call-status.connected {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .call-status.ended {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        .recording-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .recording-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+
+        .prediction-panel {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .prediction-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prediction-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .prediction-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .prediction-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .prediction-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .debtor-details-page {
+                padding: 1rem;
+            }
+
+            .details-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .phone-input-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Advanced Call Popup Styles */
+        .call-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .call-popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .call-popup-content {
+            position: relative;
+            background: linear-gradient(145deg, #1e293b, #334155);
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .call-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .call-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .call-avatar {
+            font-size: 3rem;
+            color: #00d4ff;
+        }
+
+        .call-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .call-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .call-number {
+            font-size: 1rem;
+            color: #94a3b8;
+            direction: ltr;
+        }
+
+        .call-status-text {
+            font-size: 0.875rem;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .call-timer {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Audio Section */
+        .audio-section {
+            margin-bottom: 2rem;
+        }
+
+        .audio-track {
+            margin-bottom: 1.5rem;
+        }
+
+        .audio-track:last-child {
+            margin-bottom: 0;
+        }
+
+        .audio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .waveform {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wave-bars {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 100%;
+        }
+
+        .bar {
+            width: 4px;
+            background: #00d4ff;
+            border-radius: 2px;
+            transition: height 0.1s ease;
+            height: 20%;
+            opacity: 0.5;
+        }
+
+        .bar.active {
+            height: 80%;
+            opacity: 1;
+            box-shadow: 0 0 8px #00d4ff;
+        }
+
+        /* Call Controls */
+        .call-controls-popup {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .control-btn.recording {
+            background: #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        .control-btn.end-call {
+            background: #ef4444;
+        }
+
+        .control-btn.end-call:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+
+        .control-btn.muted {
+            background: #f59e0b;
+        }
+
+        /* Call Notes */
+        .call-notes {
+            margin-bottom: 1.5rem;
+        }
+
+        .notes-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        #callNotes {
+            width: 100%;
+            height: 100px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.875rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        #callNotes::placeholder {
+            color: #94a3b8;
+        }
+
+        #callNotes:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        /* Call Statistics */
+        .call-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-label {
+            display: block;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quality-indicator {
+            display: flex;
+            gap: 3px;
+        }
+
+        .quality-bar {
+            width: 8px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1px;
+        }
+
+        .quality-bar.active {
+            background: #10b981;
+        }
+
+        .volume-meter {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .volume-fill {
+            height: 100%;
+            background: #00d4ff;
+            border-radius: 4px;
+            width: 65%;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations for Waveforms */
+        @keyframes waveAnimation {
+
+            0%,
+            100% {
+                height: 20%;
+            }
+
+            25% {
+                height: 60%;
+            }
+
+            50% {
+                height: 80%;
+            }
+
+            75% {
+                height: 40%;
+            }
+        }
+
+        .bar:nth-child(1) {
+            animation: waveAnimation 2s infinite 0.1s;
+        }
+
+        .bar:nth-child(2) {
+            animation: waveAnimation 2s infinite 0.2s;
+        }
+
+        .bar:nth-child(3) {
+            animation: waveAnimation 2s infinite 0.3s;
+        }
+
+        .bar:nth-child(4) {
+            animation: waveAnimation 2s infinite 0.4s;
+        }
+
+        .bar:nth-child(5) {
+            animation: waveAnimation 2s infinite 0.5s;
+        }
+
+        .bar:nth-child(6) {
+            animation: waveAnimation 2s infinite 0.6s;
+        }
+
+        .bar:nth-child(7) {
+            animation: waveAnimation 2s infinite 0.7s;
+        }
+
+        .bar:nth-child(8) {
+            animation: waveAnimation 2s infinite 0.8s;
+        }
+
+        .bar:nth-child(9) {
+            animation: waveAnimation 2s infinite 0.9s;
+        }
+
+        .bar:nth-child(10) {
+            animation: waveAnimation 2s infinite 1s;
+        }
+
+        /* Mobile Responsive for Call Popup */
+        @media (max-width: 768px) {
+            .call-popup-content {
+                width: 95%;
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .call-timer {
+                font-size: 1.5rem;
+            }
+
+            .call-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .call-avatar {
+                font-size: 2.5rem;
+            }
+
+            .call-name {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Countdown Interface Styles */
+        .countdown-interface {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-circle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .countdown-timer {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        }
+
+        .countdown-timer::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.3;
+            animation: countdown-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes countdown-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.5;
+            }
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .countdown-details {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            min-width: 80px;
+        }
+
+        .countdown-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .countdown-unit {
+            display: block;
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .countdown-info {
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item i {
+            color: #667eea;
+            width: 20px;
+            text-align: center;
+        }
+
+        .countdown-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid #fbbf24;
+        }
+
+        .countdown-note i {
+            color: #d97706;
+        }
+
+        /* Calling Animation Styles */
+        .calling-animation-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .calling-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1.5rem;
+            animation: calling-bounce 1.5s ease-in-out infinite;
+        }
+
+        .calling-pulse {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px solid #10b981;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: calling-pulse-ring 1.5s ease-in-out infinite;
+        }
+
+        .calling-circle i {
+            color: white;
+            font-size: 2.5rem;
+            animation: calling-rotate 2s linear infinite;
+        }
+
+        @keyframes calling-bounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes calling-pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes calling-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .calling-animation-wrapper h3 {
+            color: #1f2937;
+            font-size: 1.25rem;
+            text-align: center;
+            margin: 0;
+            animation: calling-fade 2s ease-in-out infinite;
+        }
+
+        @keyframes calling-fade {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Responsive Design for Countdown */
+        @media (max-width: 768px) {
+            .countdown-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .countdown-timer {
+                width: 150px;
+                height: 150px;
+            }
+
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+
+            .countdown-item {
+                min-width: auto;
+            }
+
+            .calling-circle {
+                width: 100px;
+                height: 100px;
+            }
+
+            .calling-circle i {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="debtor-details-page">
+        <div class="details-container">
+            <!-- Header -->
+            <div class="details-header">
+                <div class="header-left">
+                    <button class="back-btn" onclick="history.back()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <div class="client-info">
+                        <div class="client-avatar" id="clientAvatar">A</div>
+                        <div class="client-details">
+                            <h1 id="clientName">جار التحميل...</h1>
+                            <div class="client-meta" id="clientMeta">معلومات العميل</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="action-button primary" id="showHistoryBtn">
+                        <i class="fas fa-history"></i>
+                        سجل المكالمات
+                    </button>
+                    <button class="action-button success" id="newPaymentPlanBtn">
+                        <i class="fas fa-calendar-plus"></i>
+                        خطة سداد جديدة
+                    </button>
+                    <button class="action-button warning" id="sendReminderBtn">
+                        <i class="fas fa-bell"></i>
+                        إرسال تذكير
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Prediction Panel -->
+            <div class="prediction-panel" id="predictionPanel">
+                <div class="prediction-title">
+                    <i class="fas fa-brain"></i>
+                    تحليل الذكاء الاصطناعي
+                </div>
+                <div class="prediction-content" id="predictionContent">
+                    <!-- AI predictions will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Details Grid -->
+            <div class="details-grid">
+                <!-- Personal Information -->
+                <div class="details-card">
+                    <div class="card-title">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        المعلومات الشخصية
+                    </div>
+                    <div id="personalInfo">
+                        <!-- Personal info will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Debt Information -->
+                <div class="details-card">
+                    <div class="card-title">
+                        <div class="card-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        معلومات الدين
+                    </div>
+                    <div id="debtInfo">
+                        <!-- Debt info will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Next Call Countdown -->
+                <div class="details-card full-width-card">
+                    <div class="countdown-interface">
+                        <div class="card-title">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            الاتصال التلقائي القادم
+                        </div>
+                        <div class="countdown-display">
+                            <div class="countdown-circle">
+                                <div class="countdown-timer" id="countdownTimer">
+                                    <div class="countdown-number" id="countdownDays">2</div>
+                                    <div class="countdown-label">أيام</div>
+                                </div>
+                                <div class="countdown-details">
+                                    <div class="countdown-item">
+                                        <span class="countdown-value" id="countdownHours">14</span>
+                                        <span class="countdown-unit">ساعة</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-value" id="countdownMinutes">32</span>
+                                        <span class="countdown-unit">دقيقة</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-value" id="countdownSeconds">45</span>
+                                        <span class="countdown-unit">ثانية</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="countdown-info">
+                            <div class="info-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>التاريخ المحدد: <strong id="scheduledDate">الأحد 15 ديسمبر 2024</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>الوقت المفضل: <strong id="scheduledTime">2:30 مساءً</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-robot"></i>
+                                <span>نوع الاتصال: <strong>اتصال ذكي تلقائي</strong></span>
+                            </div>
+                        </div>
+                        <div class="countdown-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>سيتم إجراء الاتصال تلقائياً باستخدام الذكاء الاصطناعي في الوقت المحدد</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Call Popup -->
+                <div id="callPopup" class="call-popup" style="display: none;">
+                    <div class="call-popup-overlay"></div>
+                    <div class="call-popup-content">
+                        <div class="call-popup-header">
+                            <div class="call-info">
+                                <div class="call-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="call-details">
+                                    <div class="call-name" id="popupCallName">عميل غير محدد</div>
+                                    <div class="call-number" id="popupCallNumber">+966539322900</div>
+                                    <div class="call-status-text" id="popupCallStatus">جار الاتصال...</div>
+                                    <div class="client-audio-status" id="clientAudioStatus"
+                                        style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem;"></div>
+                                </div>
+                            </div>
+                            <div class="call-timer" id="callTimer">00:00</div>
+                        </div>
+
+                        <!-- Audio Waveforms -->
+                        <div class="audio-section">
+                            <div class="audio-track">
+                                <div class="audio-label">
+                                    <i class="fas fa-microphone"></i>
+                                    <span>صوتك</span>
+                                </div>
+                                <div class="waveform" id="agentWaveform">
+                                    <div class="wave-bars">
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="audio-track">
+                                <div class="audio-label">
+                                    <i class="fas fa-phone-volume"></i>
+                                    <span>صوت العميل</span>
+                                </div>
+                                <div class="waveform" id="clientWaveform">
+                                    <div class="wave-bars">
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Call Controls -->
+                        <div class="call-controls-popup">
+                            <button id="muteBtn" class="control-btn" title="كتم/إلغاء كتم">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="speakerBtn" class="control-btn" title="مكبر الصوت">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button id="recordBtn" class="control-btn recording" title="جار التسجيل">
+                                <i class="fas fa-circle"></i>
+                            </button>
+                            <button id="pauseBtn" class="control-btn" title="إيقاف مؤقت">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button id="endCallBtn" class="control-btn end-call" title="إنهاء المكالمة">
+                                <i class="fas fa-phone-slash"></i>
+                            </button>
+                        </div>
+
+                        <!-- Call Notes -->
+                        <div class="call-notes">
+                            <div class="notes-header">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>ملاحظات المكالمة</span>
+                            </div>
+                            <textarea id="callNotes" placeholder="اكتب ملاحظاتك حول المكالمة هنا..."></textarea>
+                        </div>
+
+                        <!-- Call Statistics -->
+                        <div class="call-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">جودة الصوت</span>
+                                <div class="quality-indicator">
+                                    <div class="quality-bar"></div>
+                                    <div class="quality-bar"></div>
+                                    <div class="quality-bar"></div>
+                                    <div class="quality-bar active"></div>
+                                    <div class="quality-bar active"></div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">مستوى الصوت</span>
+                                <div class="volume-meter">
+                                    <div class="volume-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call History Section -->
+            <div class="call-history-section" id="callHistorySection">
+                <div class="section-header">
+                    <div class="card-title">
+                        <div class="card-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        سجل المكالمات
+                    </div>
+                    <button class="action-button primary" id="refreshHistoryBtn">
+                        <i class="fas fa-refresh"></i>
+                        تحديث
+                    </button>
+                </div>
+                <div id="callHistoryContent">
+                    <!-- Call history will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 2rem; border-radius: 1rem; text-align: center; max-width: 400px;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #00d4ff; margin-bottom: 1rem;"></i>
+            <div id="loadingMessage">جار تحليل المكالمة بالذكاء الاصطناعي...</div>
+            <div style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem;">قد تستغرق هذه العملية بضع ثوانِ</div>
+        </div>
+    </div>
+
+    <!-- OpenAI Realtime API integration - No Twilio Client SDK needed -->
+    <script src="js/main.js"></script>
+    <script src="js/debtor-details.js"></script>
+</body>
+
+</html>

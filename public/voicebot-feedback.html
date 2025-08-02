@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكالمات المؤتمتة - شُهب</title>
+    <link rel="stylesheet" href="css/style.css?v=1.4">
+    <link rel="stylesheet" href="css/dashboard.css?v=1.4">
+    <link rel="stylesheet" href="css/voicebot.css?v=1.4">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1>شُهب</h1>
+                    <span>منصة التحصيل الذكي</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="debtors.html">
+                            <i class="fas fa-users"></i>
+                            <span>العملاء المتعثرون</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="voicebot-feedback.html">
+                            <i class="fas fa-robot"></i>
+                            <span>المكالمات المؤتمتة</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="smart-reports.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>التقارير الذكية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cogs"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1><i class="fas fa-robot"></i> المكالمات المؤتمتة</h1>
+                        <p>إدارة ومراقبة مكالمات الذكاء الاصطناعي</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="refreshCallsBtn">
+                            <i class="fas fa-sync-alt"></i>
+                            تحديث
+                        </button>
+                        <button class="btn btn-secondary" id="filterCallsBtn">
+                            <i class="fas fa-filter"></i>
+                            فلترة
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalCalls">24</h3>
+                        <p>إجمالي المكالمات اليوم</p>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="successfulCalls">18</h3>
+                        <p>مكالمات ناجحة</p>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="agreementCalls">12</h3>
+                        <p>موافقة على خطة الدفع</p>
+                    </div>
+                </div>
+
+                <div class="stat-card info">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="interactionRate">78%</h3>
+                        <p>معدل التفاعل</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label>التاريخ:</label>
+                    <select id="dateFilter">
+                        <option value="today">اليوم</option>
+                        <option value="week">هذا الأسبوع</option>
+                        <option value="month">هذا الشهر</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>اللغة:</label>
+                    <select id="languageFilter">
+                        <option value="all">جميع اللغات</option>
+                        <option value="ar">العربية</option>
+                        <option value="en">الإنجليزية</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>النتيجة:</label>
+                    <select id="resultFilter">
+                        <option value="all">جميع النتائج</option>
+                        <option value="success">نجح</option>
+                        <option value="partial">جزئي</option>
+                        <option value="failed">فشل</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calls Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-list"></i> سجل المكالمات اليومية</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-outline" id="exportCallsBtn">
+                            <i class="fas fa-download"></i>
+                            تصدير
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="calls-table">
+                        <thead>
+                            <tr>
+                                <th>اسم العميل</th>
+                                <th>تاريخ المكالمة</th>
+                                <th>اللغة</th>
+                                <th>المدة</th>
+                                <th>نتيجة المكالمة</th>
+                                <th>نسبة التفاعل</th>
+                                <th>نبرة الصوت</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="callsTableBody">
+                            <!-- Table rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Call Details Modal -->
+            <div class="modal-overlay" id="callDetailsModal">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-phone-alt"></i> تفاصيل المكالمة</h3>
+                        <button class="modal-close" id="closeCallDetails">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- Call Basic Info -->
+                        <div class="call-info-section">
+                            <h4><i class="fas fa-info-circle"></i> معلومات المكالمة</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">اسم العميل:</span>
+                                    <span class="value" id="modalCustomerName">محمد أحمد العتيبي</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">تاريخ المكالمة:</span>
+                                    <span class="value" id="modalCallDate">2024-01-15 14:30</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">مدة المكالمة:</span>
+                                    <span class="value" id="modalCallDuration">03:45</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">اللغة المستخدمة:</span>
+                                    <span class="value" id="modalLanguage">العربية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Analysis -->
+                        <div class="ai-analysis-section">
+                            <h4><i class="fas fa-brain"></i> التحليل التلقائي</h4>
+
+                            <!-- Analysis Metrics -->
+                            <div class="analysis-metrics">
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>نسبة التفاعل</span>
+                                    </div>
+                                    <div class="metric-value">
+                                        <span class="percentage" id="modalInteractionRate">85%</span>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <i class="fas fa-volume-up"></i>
+                                        <span>نبرة الصوت</span>
+                                    </div>
+                                    <div class="metric-value">
+                                        <span class="tone-indicator" id="modalVoiceTone">هادئة</span>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <i class="fas fa-handshake"></i>
+                                        <span>موافقة على خطة الدفع</span>
+                                    </div>
+                                    <div class="metric-value">
+                                        <span class="agreement-status" id="modalAgreement">نعم</span>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <i class="fas fa-clock"></i>
+                                        <span>وقت الاستجابة</span>
+                                    </div>
+                                    <div class="metric-value">
+                                        <span class="response-time" id="modalResponseTime">1.2 ثانية</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Smart Notes -->
+                            <div class="smart-notes">
+                                <h5><i class="fas fa-lightbulb"></i> الملاحظات الذكية</h5>
+                                <div class="notes-list" id="modalSmartNotes">
+                                    <!-- Smart notes will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" id="scheduleFollowupBtn">
+                                <i class="fas fa-calendar-plus"></i>
+                                جدولة متابعة
+                            </button>
+                            <button class="btn btn-secondary" id="exportCallReportBtn">
+                                <i class="fas fa-file-pdf"></i>
+                                تصدير تقرير
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <script src="js/voicebot-feedback.js?v=1.4"></script>
+    <script>
+        // Quick test to ensure page is working
+        setTimeout(() => {
+            if (typeof voiceBotManager === 'undefined') {
+                console.error('❌ VoiceBot Manager failed to initialize');
+                alert('خطأ في تحميل الصفحة - يرجى تحديث الصفحة');
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

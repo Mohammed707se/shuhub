@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - شُهب</title>
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="stylesheet" href="css/dashboard.css?v=1.2">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-meteor"></i>
+                <span>شُهب</span>
+            </div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="#overview" class="nav-link">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>نظرة عامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#debtors" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>المتعثرون</span>
+                        <span class="badge">2,847</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#voicebot" class="nav-link">
+                        <i class="fas fa-robot"></i>
+                        <span>المكالمات المؤتمتة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#reports" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>التقارير الذكية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">أحمد المحمد</span>
+                    <span class="user-role">مدير التحصيل</span>
+                </div>
+            </div>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">لوحة التحكم</h1>
+            </div>
+
+            <div class="nav-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="البحث في النظام...">
+                </div>
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="quick-actions">
+                    <button class="ai-call-btn" id="aiCallBtn">
+                        <i class="fas fa-robot"></i>
+                        <span>جرب الاتصال الذكي</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card primary">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12.5%</span>
+                            </div>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value" data-value="2847">0</h3>
+                            <p class="metric-label">إجمالي المتعثرين</p>
+                        </div>
+                        <div class="metric-footer">
+                            <span class="metric-subtitle">+347 هذا الشهر</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card success">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+5.2%</span>
+                            </div>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value" data-value="67.3">0</h3>
+                            <p class="metric-label">معدل الاسترداد</p>
+                        </div>
+                        <div class="metric-footer">
+                            <span class="metric-subtitle">الهدف: 70%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card warning">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+18.7%</span>
+                            </div>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value" data-value="15432">0</h3>
+                            <p class="metric-label">المكالمات الآلية</p>
+                        </div>
+                        <div class="metric-footer">
+                            <span class="metric-subtitle">+2,134 اليوم</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card info">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+24.7%</span>
+                            </div>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value" data-value="48.7">0</h3>
+                            <p class="metric-label">المسترد (مليون ريال)</p>
+                        </div>
+                        <div class="metric-footer">
+                            <span class="metric-subtitle">+8.2M هذا الشهر</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>معدل الاسترداد الشهري</h3>
+                            <div class="chart-controls">
+                                <select class="chart-filter">
+                                    <option>آخر 6 أشهر</option>
+                                    <option>آخر 12 شهر</option>
+                                    <option>السنة الحالية</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="recoveryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>توزيع حالات التحصيل</h3>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color success"></span>
+                                    <span>مسترد</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color warning"></span>
+                                    <span>قيد المعالجة</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color danger"></span>
+                                    <span>متأخر</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Tables Row -->
+                <div class="tables-row">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>الأنشطة الأخيرة</h3>
+                            <button class="view-all-btn">عرض الكل</button>
+                        </div>
+                        <div class="table-content">
+                            <div class="activities-list" id="activitiesList">
+                                <!-- Activities will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>أولوية المتابعة</h3>
+                            <button class="view-all-btn">عرض الكل</button>
+                        </div>
+                        <div class="table-content">
+                            <div class="priority-list" id="priorityList">
+                                <!-- Priority cases will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debtors Section -->
+            <section id="debtors" class="dashboard-section">
+                <div class="section-header">
+                    <h2>إدارة المتعثرين</h2>
+                    <div class="section-actions">
+                        <button class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            إضافة متعثر جديد
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            تصدير البيانات
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>البنك:</label>
+                        <select class="filter-select">
+                            <option>جميع البنوك</option>
+                            <option>البنك الأهلي</option>
+                            <option>بنك الرياض</option>
+                            <option>بنك ساب</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>الحالة:</label>
+                        <select class="filter-select">
+                            <option>جميع الحالات</option>
+                            <option>عالي الأولوية</option>
+                            <option>متوسط الأولوية</option>
+                            <option>منخفض الأولوية</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>المبلغ:</label>
+                        <select class="filter-select">
+                            <option>جميع المبالغ</option>
+                            <option>أقل من 10,000</option>
+                            <option>10,000 - 50,000</option>
+                            <option>أكثر من 50,000</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn">
+                        <i class="fas fa-filter"></i>
+                        تطبيق المرشحات
+                    </button>
+                </div>
+
+                <div class="data-table-container">
+                    <table class="data-table" id="debtorsTable">
+                        <thead>
+                            <tr>
+                                <th>المتعثر</th>
+                                <th>المبلغ</th>
+                                <th>أيام التأخير</th>
+                                <th>احتمال السداد</th>
+                                <th>آخر اتصال</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="debtorsTableBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn prev" disabled>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="pagination-info">
+                        <span>صفحة 1 من 285</span>
+                    </div>
+                    <button class="pagination-btn next">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <div class="section-header">
+                    <h2>التحليلات المتقدمة</h2>
+                    <div class="date-range-picker">
+                        <input type="date" class="date-input">
+                        <span>إلى</span>
+                        <input type="date" class="date-input">
+                        <button class="btn-primary">تطبيق</button>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>أداء المكالمات الآلية</h3>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="callsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3>توزيع المبالغ حسب الفئة</h3>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="amountDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card full-width">
+                        <div class="card-header">
+                            <h3>تحليل سلوك العملاء</h3>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="behaviorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VoiceBot Feedback Section -->
+            <section id="voicebot" class="content-section" style="display: none;">
+                <!-- Header -->
+                <header class="page-header">
+                    <div class="header-content">
+                        <div class="header-title">
+                            <h1><i class="fas fa-robot"></i> المكالمات المؤتمتة</h1>
+                            <p>إدارة ومراقبة مكالمات الذكاء الاصطناعي</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn btn-primary" id="refreshCallsBtn">
+                                <i class="fas fa-sync-alt"></i>
+                                تحديث
+                            </button>
+                            <button class="btn btn-secondary" id="filterCallsBtn">
+                                <i class="fas fa-filter"></i>
+                                فلترة
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Stats Cards -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalCalls">24</h3>
+                            <p>إجمالي المكالمات اليوم</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="successfulCalls">18</h3>
+                            <p>مكالمات ناجحة</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="agreementCalls">12</h3>
+                            <p>موافقة على خطة الدفع</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="interactionRate">78%</h3>
+                            <p>معدل التفاعل</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calls Table -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-list"></i> سجل المكالمات اليومية</h2>
+                        <p>عرض جميع المكالمات مع التحليل التفصيلي</p>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <div class="table-wrapper">
+                            <table class="calls-table">
+                                <thead>
+                                    <tr>
+                                        <th>اسم العميل</th>
+                                        <th>تاريخ المكالمة</th>
+                                        <th>اللغة</th>
+                                        <th>المدة</th>
+                                        <th>نتيجة المكالمة</th>
+                                        <th>نسبة التفاعل</th>
+                                        <th>نبرة الصوت</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="callsTableBody">
+                                    <!-- Table rows will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Smart Reports Section -->
+            <section id="reports" class="content-section" style="display: none;">
+                <!-- Header -->
+                <header class="page-header">
+                    <div class="header-content">
+                        <div class="header-title">
+                            <h1><i class="fas fa-chart-line"></i> التقارير الذكية</h1>
+                            <p>تقارير شاملة وتحليلات متقدمة للأداء</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn btn-primary" id="refreshReportsBtn">
+                                <i class="fas fa-sync-alt"></i>
+                                تحديث
+                            </button>
+                            <button class="btn btn-secondary" id="scheduleReportBtn">
+                                <i class="fas fa-calendar-alt"></i>
+                                جدولة تقرير
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalReports">28</h3>
+                            <p>تقرير متاح</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="downloadsToday">156</h3>
+                            <p>تحميل اليوم</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="scheduledReports">12</h3>
+                            <p>تقرير مجدول</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="performanceScore">94%</h3>
+                            <p>نسبة الأداء</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Categories -->
+                <div class="reports-categories">
+                    <!-- Management Reports -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2><i class="fas fa-user-tie"></i> تقارير إدارية</h2>
+                            <p>تقارير شاملة للإدارة العليا</p>
+                        </div>
+
+                        <div class="reports-grid">
+                            <div class="report-card">
+                                <div class="report-icon">
+                                    <i class="fas fa-calendar-week"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>تقرير المدير الأسبوعي</h3>
+                                    <p>ملخص شامل لأداء الأسبوع والإنجازات</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ ساعة</span>
+                                        <span class="file-size">2.4 MB</span>
+                                    </div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('weekly')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success" onclick="generateReport('weekly', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="report-card">
+                                <div class="report-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>التقرير الشهري التنفيذي</h3>
+                                    <p>تحليل مفصل للأداء الشهري والمؤشرات</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ 3 ساعات</span>
+                                        <span class="file-size">5.2 MB</span>
+                                    </div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('monthly')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success" onclick="generateReport('monthly', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Reports -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2><i class="fas fa-chart-pie"></i> تقارير الأداء</h2>
+                            <p>تحليل نسب التحصيل والفروع</p>
+                        </div>
+
+                        <div class="reports-grid">
+                            <div class="report-card">
+                                <div class="report-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>نسب التحصيل حسب الفرع</h3>
+                                    <p>مقارنة أداء الفروع ونسب التحصيل</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ 30 دقيقة</span>
+                                        <span class="file-size">1.8 MB</span>
+                                    </div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('branches')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success" onclick="generateReport('branches', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="report-card">
+                                <div class="report-icon">
+                                    <i class="fas fa-users-cog"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>تحليل أنواع العملاء</h3>
+                                    <p>تصنيف العملاء حسب السلوك والاستجابة</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ ساعتين</span>
+                                        <span class="file-size">3.1 MB</span>
+                                    </div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('customer-analysis')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success"
+                                        onclick="generateReport('customer-analysis', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Reports -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2><i class="fas fa-balance-scale"></i> تقارير مقارنة</h2>
+                            <p>مقارنة الأداء بين الأنظمة والفرق</p>
+                        </div>
+
+                        <div class="reports-grid">
+                            <div class="report-card featured">
+                                <div class="report-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>النظام الذكي مقابل الفريق اليدوي</h3>
+                                    <p>مقارنة شاملة لأداء النظام المؤتمت والعمل اليدوي</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ 15 دقيقة</span>
+                                        <span class="file-size">4.7 MB</span>
+                                    </div>
+                                    <div class="featured-badge">الأكثر طلباً</div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('ai-vs-manual')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success" onclick="generateReport('ai-vs-manual', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="report-card">
+                                <div class="report-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="report-content">
+                                    <h3>مقارنة الأداء الفصلي</h3>
+                                    <p>تحليل مقارن للأداء عبر الفصول</p>
+                                    <div class="report-meta">
+                                        <span class="last-updated">آخر تحديث: منذ يوم</span>
+                                        <span class="file-size">2.9 MB</span>
+                                    </div>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn-primary" onclick="generateReport('quarterly')">
+                                        <i class="fas fa-file-pdf"></i>
+                                        PDF
+                                    </button>
+                                    <button class="btn btn-success" onclick="generateReport('quarterly', 'excel')">
+                                        <i class="fas fa-file-excel"></i>
+                                        Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal for Debtor Details -->
+    <div class="modal" id="debtorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تفاصيل المتعثر</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="debtorModalBody">
+                <!-- Debtor details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary">تحديث البيانات</button>
+                <button class="btn-secondary">إرسال تذكير</button>
+                <button class="btn-outline">إنشاء خطة سداد</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Call Modal -->
+    <div class="modal large-modal" id="aiCallModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> اتصال ذكي - الذكاء الاصطناعي</h3>
+                <button class="modal-close" id="closeAiCallModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Template Notice -->
+                <div class="template-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>هذه بيانات تجريبية (تمبلت) لعرض النظام</span>
+                    <button class="refresh-data-btn" id="refreshDataBtn" title="تحديث البيانات">
+                        <i class="fas fa-sync-alt"></i>
+                        بيانات جديدة
+                    </button>
+                </div>
+
+                <!-- Call Setup Phase -->
+                <div class="call-setup" id="callSetup">
+                    <div class="debtor-preview">
+                        <div class="debtor-header">
+                            <div class="debtor-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="debtor-info">
+                                <h4 id="debtorName">محمد أحمد العتيبي</h4>
+                                <p id="debtorId">ID: #99031</p>
+                            </div>
+                        </div>
+
+                        <div class="debtor-details-grid">
+                            <div class="detail-item">
+                                <span class="label">رقم الهوية:</span>
+                                <span class="value" id="debtorNationalId">1234567890</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">العنوان:</span>
+                                <span class="value" id="debtorAddress">الرياض - حي النرجس</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">نوع القرض:</span>
+                                <span class="value" id="loanType">قرض شخصي</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">البنك:</span>
+                                <span class="value" id="bankName">البنك الأهلي السعودي</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">المبلغ الأصلي:</span>
+                                <span class="value amount" id="originalAmount">150,000 ريال</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">المبلغ المتبقي:</span>
+                                <span class="value amount danger" id="remainingAmount">125,000 ريال</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">أيام التأخير:</span>
+                                <span class="value danger" id="daysOverdue">45 يوم</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">حالة الائتمان:</span>
+                                <span class="value warning" id="creditStatus">متوسط</span>
+                            </div>
+                        </div>
+
+                        <!-- حالة العميل وسياسة الموافقة -->
+                        <div class="client-status-section">
+                            <h4 class="status-title">
+                                <i class="fas fa-shield-alt"></i>
+                                حالة العميل والموافقات
+                            </h4>
+                            <div class="status-box" id="clientStatusBox">
+                                <div class="status-main">
+                                    <span class="status-badge" id="clientStatusBadge">متعثر عادي</span>
+                                </div>
+                                <div class="policy-text" id="policyText">يمكن النظر في الطلب</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phone-input-section">
+                        <label for="phoneInput">رقم الجوال:</label>
+                        <div class="phone-input-group">
+                            <input type="tel" id="phoneInput" placeholder="+966 5X XXX XXXX" value="+966539322900">
+                            <button class="verify-btn" id="verifyPhone">
+                                <i class="fas fa-check-circle"></i>
+                                تحقق
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="start-call-btn" id="startAiCall">
+                        <i class="fas fa-phone"></i>
+                        بدء الاتصال الذكي
+                    </button>
+                </div>
+
+                <!-- Call In Progress Phase -->
+                <div class="call-in-progress hidden" id="callInProgress">
+                    <div class="call-status">
+                        <div class="call-animation">
+                            <div class="call-pulse"></div>
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4 id="callStatusText">جارٍ الاتصال...</h4>
+                        <p id="callDuration">00:00</p>
+                    </div>
+
+                    <div class="call-controls">
+                        <button class="call-control-btn mute-btn" id="muteBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="call-control-btn end-call-btn" id="endCall">
+                            <i class="fas fa-phone-slash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Call Completed Phase -->
+                <div class="call-completed hidden" id="callCompleted">
+                    <div class="completion-header">
+                        <div class="completion-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>تم إنهاء المكالمة</h4>
+                        <p>المدة: <span id="finalCallDuration">2:34</span></p>
+                    </div>
+
+                    <!-- Call Analytics Grid -->
+                    <div class="analytics-grid" id="analyticsGrid">
+                        <!-- Loading State -->
+                        <div class="analytics-loading" id="analyticsLoading">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <p>جارٍ تحليل المكالمة بالذكاء الاصطناعي...</p>
+                            <small>يرجى الانتظار بينما نحلل المحادثة ونستخرج البيانات</small>
+                        </div>
+
+                        <!-- Analytics Cards (hidden initially) -->
+                        <div class="analytics-cards hidden" id="analyticsCards">
+                            <!-- Row 1 -->
+                            <div class="analytics-card">
+                                <div class="card-header">
+                                    <i class="fas fa-signal"></i>
+                                    <span>جودة المكالمة</span>
+                                </div>
+                                <div class="card-value">
+                                    <span class="percentage" id="callQuality">85%</span>
+                                </div>
+                            </div>
+
+                            <div class="analytics-card">
+                                <div class="card-header">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>فهم مشكلة العميل</span>
+                                </div>
+                                <div class="card-value">
+                                    <span class="problem-summary" id="problemSummary">صعوبات مالية مؤقتة بسبب ظروف
+                                        العمل</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="analytics-card">
+                                <div class="card-header">
+                                    <i class="fas fa-percentage"></i>
+                                    <span>احتمالية السداد</span>
+                                </div>
+                                <div class="card-value">
+                                    <span class="percentage" id="paymentProbability">72%</span>
+                                </div>
+                            </div>
+
+                            <div class="analytics-card">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-pie"></i>
+                                    <span>الحالة المالية</span>
+                                </div>
+                                <div class="card-value">
+                                    <span class="financial-status" id="financialStatus">متوسطة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations Section -->
+                    <div class="recommendations-section">
+                        <h5><i class="fas fa-lightbulb"></i> التوصيات</h5>
+
+                        <!-- Loading State -->
+                        <div class="recommendations-loading" id="recommendationsLoading">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <p>جارٍ إنشاء التوصيات...</p>
+                        </div>
+
+                        <!-- Recommendations List (hidden initially) -->
+                        <div class="recommendations-list hidden" id="recommendationsList">
+                            <!-- Recommendations will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="call-actions">
+                        <button class="export-pdf-btn" id="exportPdfBtn">
+                            <i class="fas fa-file-pdf"></i>
+                            تصدير تقرير PDF
+                        </button>
+                        <button class="schedule-followup-btn" id="scheduleFollowup">
+                            <i class="fas fa-calendar-plus"></i>
+                            جدولة متابعة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

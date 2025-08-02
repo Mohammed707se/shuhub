@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقارير الذكية - شُهب</title>
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="stylesheet" href="css/dashboard.css?v=1.2">
+    <link rel="stylesheet" href="css/smart-reports.css?v=1.2">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1>شُهب</h1>
+                    <span>منصة التحصيل الذكي</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="debtors.html">
+                            <i class="fas fa-users"></i>
+                            <span>العملاء المتعثرون</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="voicebot-feedback.html">
+                            <i class="fas fa-robot"></i>
+                            <span>المكالمات المؤتمتة</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="smart-reports.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>التقارير الذكية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cogs"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1><i class="fas fa-chart-line"></i> التقارير الذكية</h1>
+                        <p>تقارير شاملة وتحليلات متقدمة للأداء</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="refreshReportsBtn">
+                            <i class="fas fa-sync-alt"></i>
+                            تحديث
+                        </button>
+                        <button class="btn btn-secondary" id="scheduleReportBtn">
+                            <i class="fas fa-calendar-alt"></i>
+                            جدولة تقرير
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalReports">28</h3>
+                        <p>تقرير متاح</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="downloadsToday">156</h3>
+                        <p>تحميل اليوم</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="scheduledReports">12</h3>
+                        <p>تقرير مجدول</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="performanceScore">94%</h3>
+                        <p>نسبة الأداء</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Categories -->
+            <div class="reports-categories">
+                <!-- Management Reports -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-user-tie"></i> تقارير إدارية</h2>
+                        <p>تقارير شاملة للإدارة العليا</p>
+                    </div>
+
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <div class="report-icon">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>تقرير المدير الأسبوعي</h3>
+                                <p>ملخص شامل لأداء الأسبوع والإنجازات</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ ساعة</span>
+                                    <span class="file-size">2.4 MB</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary" onclick="smartReports.generateReport('weekly')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('weekly', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-card">
+                            <div class="report-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>التقرير الشهري التنفيذي</h3>
+                                <p>تحليل مفصل للأداء الشهري والمؤشرات</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ 3 ساعات</span>
+                                    <span class="file-size">5.2 MB</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary" onclick="smartReports.generateReport('monthly')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('monthly', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Reports -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-chart-pie"></i> تقارير الأداء</h2>
+                        <p>تحليل نسب التحصيل والفروع</p>
+                    </div>
+
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <div class="report-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>نسب التحصيل حسب الفرع</h3>
+                                <p>مقارنة أداء الفروع ونسب التحصيل</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ 30 دقيقة</span>
+                                    <span class="file-size">1.8 MB</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary" onclick="smartReports.generateReport('branches')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('branches', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-card">
+                            <div class="report-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>تحليل أنواع العملاء</h3>
+                                <p>تصنيف العملاء حسب السلوك والاستجابة</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ ساعتين</span>
+                                    <span class="file-size">3.1 MB</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary"
+                                    onclick="smartReports.generateReport('customer-analysis')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('customer-analysis', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Reports -->
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2><i class="fas fa-balance-scale"></i> تقارير مقارنة</h2>
+                        <p>مقارنة الأداء بين الأنظمة والفرق</p>
+                    </div>
+
+                    <div class="reports-grid">
+                        <div class="report-card featured">
+                            <div class="report-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>النظام الذكي مقابل الفريق اليدوي</h3>
+                                <p>مقارنة شاملة لأداء النظام المؤتمت والعمل اليدوي</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ 15 دقيقة</span>
+                                    <span class="file-size">4.7 MB</span>
+                                </div>
+                                <div class="featured-badge">الأكثر طلباً</div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary" onclick="smartReports.generateReport('ai-vs-manual')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('ai-vs-manual', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-card">
+                            <div class="report-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>مقارنة الأداء الفصلي</h3>
+                                <p>تحليل مقارن للأداء عبر الفصول</p>
+                                <div class="report-meta">
+                                    <span class="last-updated">آخر تحديث: منذ يوم</span>
+                                    <span class="file-size">2.9 MB</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-primary" onclick="smartReports.generateReport('quarterly')">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="btn btn-success"
+                                    onclick="smartReports.generateReport('quarterly', 'excel')">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Downloads -->
+            <div class="recent-downloads">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> التحميلات الأخيرة</h2>
+                    <button class="btn btn-outline" id="clearHistoryBtn">
+                        <i class="fas fa-trash-alt"></i>
+                        مسح السجل
+                    </button>
+                </div>
+
+                <div class="downloads-list" id="downloadsList">
+                    <!-- Downloads will be populated here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Loading Modal -->
+    <div class="modal-overlay" id="loadingModal">
+        <div class="loading-container">
+            <div class="loading-spinner">
+                <i class="fas fa-file-pdf fa-spin"></i>
+            </div>
+            <h3>جارٍ إنشاء التقرير</h3>
+            <p id="loadingMessage">يرجى الانتظار بينما نقوم بإنشاء التقرير...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/smart-reports.js"></script>
+    <script>
+        // Quick test to ensure page is working
+        setTimeout(() => {
+            if (typeof smartReports === 'undefined') {
+                console.error('❌ Smart Reports Manager failed to initialize');
+                alert('خطأ في تحميل الصفحة - يرجى تحديث الصفحة');
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
