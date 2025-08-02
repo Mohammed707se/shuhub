@@ -4,121 +4,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شُهب - منصة التحصيل الذكي</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>شُهب: تحصيل أذكى.. تعثر أقل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
                 <div class="logo">
-                    <i class="fas fa-meteor"></i>
-                    <span>شُهب</span>
+                    <div class="logo-container">
+                        <h2>شُهب</h2>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#about" class="nav-link">من نحن</a></li>
+                    <li><a href="#services" class="nav-link">خدماتنا</a></li>
+                    <li><a href="#achievements" class="nav-link">إنجازاتنا</a></li>
+                    <li><a href="#contact" class="nav-link">تواصل
+                            معنا</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            <div class="nav-menu">
-                <a href="#hero" class="nav-link active">الرئيسية</a>
-                <a href="#features" class="nav-link">المميزات</a>
-                <a href="#solutions" class="nav-link">الحلول</a>
-                <a href="#pricing" class="nav-link">الأسعار</a>
-                <a href="/dashboard" class="nav-link">لوحة التحكم</a>
-                <button class="btn-primary">ابدأ الآن</button>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content" style="margin-top: 10px;">
                 <h1 class="hero-title">
-                    <span class="gradient-text">منصة التحصيل الذكي</span>
-                    <br>للبنوك والمؤسسات المالية
+                    <span class="gradient-text">شُهب</span>
+                    <br>
+                    <span style="font-size: 40px;">تحصيل اذكى .. تعثر
+                        اقل</span>
                 </h1>
+
                 <p class="hero-subtitle">
-                    تقنية متقدمة مدعومة بالذكاء الاصطناعي لزيادة معدلات الاسترداد بنسبة تصل إلى 67%
-                    وتقليل التكاليف التشغيلية بنسبة 50%
+                    حلول ذكية تعتمد على الذكاء الاصطناعي لتحسين معدلات تحصيل
+                    الديون وتقليل التكاليف التشغيلية في البنوك والمؤسسات
+                    المالية
                 </p>
-                <div class="hero-buttons">
-                    <button class="btn-primary large">
-                        <i class="fas fa-rocket"></i>
-                        ابدأ تجربتك المجانية
-                    </button>
-                    <button class="btn-secondary large">
-                        <i class="fas fa-play"></i>
-                        شاهد العرض التوضيحي
-                    </button>
-                </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number">67%</span>
-                        <span class="stat-label">معدل الاسترداد</span>
+                        <h3>60%+</h3>
+                        <p>زيادة في معدلات الاسترداد</p>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">50%</span>
-                        <span class="stat-label">توفير في التكاليف</span>
+                        <h3>50%</h3>
+                        <p>توفير في التكاليف التشغيلية</p>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">127+</span>
-                        <span class="stat-label">بنك ومؤسسة</span>
+                        <h3>24/7</h3>
+                        <p>مراقبة وتحليل مستمر</p>
                     </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="dashboard-preview">
-                    <div class="dashboard-header">
-                        <div class="header-controls">
-                            <span class="control red"></span>
-                            <span class="control yellow"></span>
-                            <span class="control green"></span>
-                        </div>
-                        <span class="header-title">لوحة التحكم - شُهب</span>
-                    </div>
-                    <div class="dashboard-content">
-                        <div class="chart-container">
-                            <canvas id="heroChart"></canvas>
-                        </div>
-                        <div class="mini-stats">
-                            <div class="mini-stat">
-                                <i class="fas fa-chart-line"></i>
-                                <span>+24.7%</span>
-                            </div>
-                            <div class="mini-stat">
-                                <i class="fas fa-users"></i>
-                                <span>2,847</span>
-                            </div>
-                            <div class="mini-stat">
-                                <i class="fas fa-phone"></i>
-                                <span>15,432</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="window.location.href='dashboard.html'">ابدأ تجربة
+                        مجانية</button>
                 </div>
             </div>
         </div>
-        <div class="hero-bg">
-            <div class="floating-element" style="top: 10%; left: 10%;"></div>
-            <div class="floating-element" style="top: 60%; right: 15%;"></div>
-            <div class="floating-element" style="bottom: 20%; left: 20%;"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" style="text-align: center;">
+                    <h2>ما هو نظام شُهب؟</h2>
+                    <strong style="color: #00befe; font-size: large;">شُهب</strong>
+                    هو المنصة الذكية الأولى لتحصيل
+                    الديون المتعثرة في القطاع المالي،
+                    التي تعتمد على تحليل البيانات وتقنيات الذكاء الاصطناعي
+                    لتحسين معدلات الاسترداد.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>المشكلة التي نحلها</h2>
+                <!-- <p>نظام مراقبة متطور بالذكاء الاصطناعي يوفر حماية شاملة
+                        لخوادمك ومواقعك</p> -->
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-gears" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>عمليات يدوية مرهقة</h3>
+                    <p>اعتماد على العمل اليدوي في التواصل والتذكير وتسجيل
+                        الردود</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-arrow-trend-down" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>انخفاض معدلات الاسترداد</h3>
+                    <p>نسبة الاسترداد أقل من 30% بسبب ضعف الاستهداف</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-eye-slash" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>انعدام الرؤية الحية</h3>
+                    <p>لا يوجد تتبع لحظي للأداء أو مؤشرات ذكية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Capabilities Section -->
+    <section class="ai-capabilities">
+        <div class="container">
+            <div class="section-header">
+                <h2>كيف يعمل شُهب؟</h2>
+            </div>
+
+            <div class="ai-cards-container">
+                <div class="ai-card active" data-card="0">
+                    <div class="ai-card-icon">
+                        <i class="fa-solid fa-link" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>تكامل ذكي مع الأنظمة</h3>
+                    <p>يتكامل شُهب تلقائيًا مع أنظمة CRM، وقواعد بيانات
+                        المدفوعات، وسجلات الاتصالات لتجميع البيانات في الوقت
+                        الفعلي.</p>
+                </div>
+
+                <div class="ai-card" data-card="1">
+                    <div class="ai-card-icon">
+                        <i class="fa-solid fa-chart-line" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>تحليل البيانات السلوكية</h3>
+                    <p>يستخدم الذكاء الاصطناعي لتحليل سلوك العملاء وتحديد
+                        فرص التحصيل وتصنيف العملاء حسب احتمالية السداد.</p>
+                </div>
+
+                <div class="ai-card" data-card="2">
+                    <div class="ai-card-icon">
+                        <i class="fa-solid fa-handshake" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>اقتراح استراتيجيات مخصصة</h3>
+                    <p>يقترح خطط دفع مرنة، وقنوات تواصل فعالة، وجدولة رسائل
+                        مخصصة لكل عميل بناءً على بياناته.</p>
+                </div>
+
+                <div class="ai-card" data-card="3">
+                    <div class="ai-card-icon">
+                        <i class="fa-solid fa-robot" style="font-size: 50px; color: #00befe;"></i>
+                    </div>
+                    <h3>تنفيذ آلي ومتابعة ذكية</h3>
+                    <p>ينفذ شُهب جميع خطوات التحصيل تلقائيًا، مع إرسال
+                        التنبيهات والمتابعة المستمرة لضمان أقصى كفاءة.</p>
+                </div>
+            </div>
+
+            <div class="ai-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="card-indicators">
+                    <span class="indicator active" data-indicator="0"></span>
+                    <span class="indicator" data-indicator="1"></span>
+                    <span class="indicator" data-indicator="2"></span>
+                    <span class="indicator" data-indicator="3"></span>
+
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section id="features" class="features-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">مميزات شُهب الفريدة</h2>
-                <p class="section-subtitle">تقنيات متطورة لحلول تحصيل ذكية وفعالة</p>
+                <h2>كيف يحل شُهب هذه المشكلة؟</h2>
+                <!-- <p>نظام مراقبة متطور بالذكاء الاصطناعي يوفر حماية شاملة
+                        لخوادمك ومواقعك</p> -->
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -126,178 +203,174 @@
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>تحليل سلوك العميل</h3>
-                    <p>تحليل ذكي للمكالمات الصوتية والبيانات المالية لتقييم شامل لحالة العميل</p>
-                    <div class="feature-stats">
-                        <span>دقة 95%</span>
-                    </div>
+                    <p>تحليل شامل للبيانات البنكية والمكالمات الصوتية لتقييم
+                        "القدرة والنية"</p>
+                    <ul class="feature-list">
+                        <li>قراءة البيانات البنكية (الرصيد، المعاملات)</li>
+                        <li>تحليل المكالمات الصوتية السابقة</li>
+                        <li>تقييم شامل لحالة العميل</li>
+                    </ul>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>اقتراح حلول مالية</h3>
+                    <p>خطط دفع مرنة ومخصصة تتماشى مع الوضع الحالي للعميل</p>
+                    <ul class="feature-list">
+                        <li>خطط دفع مرنة وقابلة للتنفيذ</li>
+                        <li>تنبيهات وتذكيرات مخصصة</li>
+                        <li>لغة داعمة وتجنب الأساليب التصادمية</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
                     <h3>أتمتة دورة التحصيل</h3>
-                    <p>إدارة تلقائية كاملة للمهام من الاتصالات إلى التوثيق والمتابعة</p>
-                    <div class="feature-stats">
-                        <span>توفير 50% من الوقت</span>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>خطط سداد ذكية</h3>
-                    <p>اقتراح حلول مالية مخصصة تتماشى مع الوضع الحالي لكل عميل</p>
-                    <div class="feature-stats">
-                        <span>معدل قبول 78%</span>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h3>مكالمات صوتية ذكية</h3>
-                    <p>وكلاء صوتيون آليون بنبرة إنسانية واقعية لآلاف المكالمات</p>
-                    <div class="feature-stats">
-                        <span>24/7 متاح</span>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>الامتثال والأمان</h3>
-                    <p>حماية متقدمة للبيانات مع الامتثال الكامل للقوانين المالية</p>
-                    <div class="feature-stats">
-                        <span>ISO 27001</span>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-analytics"></i>
-                    </div>
-                    <h3>تحليلات لحظية</h3>
-                    <p>لوحة تحكم متقدمة مع تقارير فورية ومؤشرات أداء ذكية</p>
-                    <div class="feature-stats">
-                        <span>تحديث فوري</span>
-                    </div>
+                    <p>إدارة تلقائية لجميع مهام التحصيل مع تحديد ذكي
+                        للأولويات</p>
+                    <ul class="feature-list">
+                        <li>إدارة مهام التحصيل تلقائيًا</li>
+                        <li>تحديد الأولويات الذكي</li>
+                        <li>تقليل العبء على الفريق البشري</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions">
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">حلول متخصصة لكل نوع مؤسسة</h2>
-                <p class="section-subtitle">منصة واحدة، حلول متعددة</p>
+                <h2>مزايا شُهب التنافسية</h2>
+                <p>حلول متقدمة لا تجدها في أي نظام آخر</p>
             </div>
-            <div class="solutions-tabs">
-                <button class="tab-btn active" data-tab="banks">البنوك التجارية</button>
-                <button class="tab-btn" data-tab="finance">شركات التمويل</button>
-                <button class="tab-btn" data-tab="microfinance">التمويل الأصغر</button>
-                <button class="tab-btn" data-tab="telecom">شركات الاتصالات</button>
-            </div>
-            <div class="tab-content active" id="banks">
-                <div class="solution-content">
-                    <div class="solution-text">
-                        <h3>حلول البنوك التجارية</h3>
-                        <p>منصة شاملة للبنوك الكبيرة مع قدرة على معالجة آلاف الحالات يومياً</p>
-                        <ul class="solution-features">
-                            <li><i class="fas fa-check"></i> تكامل مع أنظمة البنوك الأساسية</li>
-                            <li><i class="fas fa-check"></i> إدارة محافظ متعددة</li>
-                            <li><i class="fas fa-check"></i> تقارير إدارية متقدمة</li>
-                            <li><i class="fas fa-check"></i> دعم متعدد اللغات</li>
+            <div class="achievements-content">
+                <div class="achievement-highlight">
+                    <div class="achievement-badge">
+                    </div>
+                    <div class="achievement-text">
+                        <ul class="achievement-list">
+                            <li>تحليل مكالمات صوتية للعميل</li>
+                            <li>تحديد احتمال السداد وتصفية الأولويات</li>
+                            <li>اقتراح خطط دفع شخصية تلقائياً</li>
+                            <li>دمج سهل مع أنظمة البنوك (API/CRM)</li>
+                            <li>لوحة تحكم لحظية للفريق والإدارة</li>
+                            <li>أتمتة كاملة لدورة التحصيل</li>
                         </ul>
-                        <button class="btn-primary">اطلب عرضاً خاصاً</button>
-                    </div>
-                    <div class="solution-visual">
-                        <div class="bank-dashboard">
-                            <div class="metric-cards">
-                                <div class="metric-card">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    <div>
-                                        <span class="metric-value">2.4M SAR</span>
-                                        <span class="metric-label">استرداد اليوم</span>
-                                    </div>
-                                </div>
-                                <div class="metric-card">
-                                    <i class="fas fa-percentage"></i>
-                                    <div>
-                                        <span class="metric-value">67.3%</span>
-                                        <span class="metric-label">معدل النجاح</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">خطط أسعار مرنة</h2>
-                <p class="section-subtitle">اختر الخطة المناسبة لحجم مؤسستك</p>
+                <h2>الفوائد المالية والتشغيلية</h2>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>البداية</h3>
-                        <div class="price">
-                            <span class="currency">SAR</span>
-                            <span class="amount">2,500</span>
-                            <span class="period">/شهرياً</span>
-                        </div>
+            <div class="benefits-comparison">
+                <div class="comparison-card before">
+                    <h3>قبل شُهب</h3>
+                    <div class="comparison-item">
+                        <span class="metric">نسبة الاسترداد</span>
+                        <span class="value">25-30%</span>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> حتى 1,000 حالة شهرياً</li>
-                        <li><i class="fas fa-check"></i> لوحة تحكم أساسية</li>
-                        <li><i class="fas fa-check"></i> تقارير شهرية</li>
-                        <li><i class="fas fa-check"></i> دعم عبر البريد الإلكتروني</li>
-                    </ul>
-                    <button class="btn-outline">ابدأ التجربة</button>
-                </div>
-                <div class="pricing-card popular">
-                    <div class="popular-badge">الأكثر شعبية</div>
-                    <div class="pricing-header">
-                        <h3>المحترف</h3>
-                        <div class="price">
-                            <span class="currency">SAR</span>
-                            <span class="amount">7,500</span>
-                            <span class="period">/شهرياً</span>
-                        </div>
+                    <div class="comparison-item">
+                        <span class="metric">التكاليف التشغيلية</span>
+                        <span class="value">مرتفعة</span>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> حتى 5,000 حالة شهرياً</li>
-                        <li><i class="fas fa-check"></i> تحليلات متقدمة</li>
-                        <li><i class="fas fa-check"></i> مكالمات صوتية ذكية</li>
-                        <li><i class="fas fa-check"></i> دعم 24/7</li>
-                        <li><i class="fas fa-check"></i> تكامل API</li>
-                    </ul>
-                    <button class="btn-primary">اختر هذه الخطة</button>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>المؤسسات</h3>
-                        <div class="price">
-                            <span class="currency">SAR</span>
-                            <span class="amount">15,000</span>
-                            <span class="period">/شهرياً</span>
-                        </div>
+                    <div class="comparison-item">
+                        <span class="metric">وقت دورة التحصيل</span>
+                        <span class="value">30-45 يوم</span>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> حالات غير محدودة</li>
-                        <li><i class="fas fa-check"></i> ذكاء اصطناعي متقدم</li>
-                        <li><i class="fas fa-check"></i> تخصيص كامل</li>
-                        <li><i class="fas fa-check"></i> مدير حساب مخصص</li>
-                        <li><i class="fas fa-check"></i> SLA مضمون</li>
-                    </ul>
-                    <button class="btn-outline">تواصل معنا</button>
+                    <div class="comparison-item">
+                        <span class="metric">تجربة العميل</span>
+                        <span class="value">تصادمية وعامة</span>
+                    </div>
                 </div>
+                <div class="comparison-arrow">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="comparison-card after">
+                    <h3>بعد شُهب</h3>
+                    <div class="comparison-item">
+                        <span class="metric">نسبة الاسترداد</span>
+                        <span class="value">حتى 60%</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="metric">التكاليف التشغيلية</span>
+                        <span class="value">-50% تخفيض</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="metric">وقت دورة التحصيل</span>
+                        <span class="value">7-10 أيام</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="metric">تجربة العميل</span>
+                        <span class="value">شخصية ومبنية على البيانات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>ابدأ رحلتك مع شُهب اليوم</h2>
+                <p>حوّل عمليات التحصيل لديك وخفض
+                    التكاليف التشغيلية بنسبة 50%</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>البريد الإلكتروني</h4>
+                        <p>info@shohub.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>الهاتف</h4>
+                        <p>+966 50 123 4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>الدعم التقني</h4>
+                        <p>متوفر 24/7 للمساعدة الفنية</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="الاسم الكامل" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="رقم الهاتف" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value disabled selected hidden>اختر نوع
+                                الطلب</option>
+                            <option value="trial">نسخة تجريبية
+                                مجانية</option>
+                            <option value="demo">عرض توضيحي</option>
+                            <option value="consultation">استشارة
+                                متخصصة</option>
+                            <option value="pricing">استعلام عن
+                                الأسعار</option>
+                            <option value="support">دعم فني</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="وصف المشروع أو الاستفسار" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">إرسال
+                        الطلب</button>
+                </form>
             </div>
         </div>
     </section>
@@ -306,55 +379,48 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <i class="fas fa-meteor"></i>
-                        <span>شُهب</span>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+
+                        <h3>شُهب</h3>
                     </div>
-                    <p>منصة التحصيل الذكي الرائدة في المنطقة العربية</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    <p>تحصيل أذكى.. تعثر أقل</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>المنتج</h4>
+                        <ul>
+                            <li><a href="#services">المميزات</a></li>
+                            <li><a href="#services">كيف يعمل</a></li>
+                            <li><a href="#services">التكامل</a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="footer-section">
-                    <h4>المنصة</h4>
-                    <ul>
-                        <li><a href="#features">المميزات</a></li>
-                        <li><a href="#solutions">الحلول</a></li>
-                        <li><a href="#pricing">الأسعار</a></li>
-                        <li><a href="/dashboard">لوحة التحكم</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>الدعم</h4>
-                    <ul>
-                        <li><a href="#">مركز المساعدة</a></li>
-                        <li><a href="#">التوثيق</a></li>
-                        <li><a href="#">تواصل معنا</a></li>
-                        <li><a href="#">حالة النظام</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>الشركة</h4>
-                    <ul>
-                        <li><a href="#">من نحن</a></li>
-                        <li><a href="#">الوظائف</a></li>
-                        <li><a href="#">الأخبار</a></li>
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                    </ul>
+                    <div class="footer-section">
+                        <h4>الشركة</h4>
+                        <ul>
+                            <li><a href="#about">من نحن</a></li>
+                            <li><a href="#about">الوظائف</a></li>
+                            <li><a href="#about">الأخبار</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>الدعم</h4>
+                        <ul>
+                            <li><a href="#contact">المركز المساعدة</a></li>
+                            <li><a href="#contact">تواصل معنا</a></li>
+                            <li><a href="#contact">الخصوصية</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 شُهب. جميع الحقوق محفوظة.</p>
-                <p>مصمم بـ ❤️ في المملكة العربية السعودية</p>
+                <p>&copy; 2024 شُهب ShoHub. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
